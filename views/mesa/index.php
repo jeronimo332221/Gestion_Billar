@@ -8,7 +8,7 @@
 
 <section class="mesa">
     <?php foreach($mesas as $mesa) { ?>
-        <a href="mesa/ver?id= <?php echo $mesa->id; ?>" class="mesa-contenedor">
+        <a href="mesa/ver?id= <?php echo $mesa->id; ?>" class="mesa-contenedor <?php if($mesa->billar_type == 1){echo "mesa-billar-contenedor";} ?>">
             <h4 class="id-mesa"><?php echo $mesa->id; ?></h4> 
             <div class="mesa-listado">
                 <?php foreach($clientes as $cliente) { ?>
@@ -22,7 +22,7 @@
                             
                             <div class="cliente-acciones">
                                 
-                                <form class="campo-articulo" action="/cliente/eliminar" method="POST">
+                                <form class="campo-articulo" action="/clienteArticulo/crear?id=<?php echo $cliente->id ?>" method="POST">
                                     <input type="hidden" name="id" >            
                                     <input type="submit" value="+" class="boton-agregar">
                                 </form>

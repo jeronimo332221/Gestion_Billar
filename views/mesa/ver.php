@@ -32,9 +32,7 @@
                                         <h4 class="articulo"><?php echo $articulo->id ?></h4>
                                         <h4 class="articulo"><?php echo $articulo->nombre ?></h4>
                                         <label class="articulo"><?php echo $articulo->precio ?></label>
-                                        <form action="/clienteArticulo/eliminar?id=<?php echo $articulo->id ?>" method="POST" class="formulario">
-                                            <a href="" class="boton-eliminar" value="X">
-                                        </form>
+                                        <a href="clienteArticulo/eliminar?id=<?php echo $articulo->id ?>" class="boton-eliminar"></a>
                                         
 
                                     </div>

@@ -72,6 +72,9 @@ class mesaController {
         $id = $_GET['id'];
         $clienteArticulo = ClienteArticulo::find($id);
         $clienteArticulo->eliminar();
+
+        header('Location: /mesa ');
+        
         
         
     }
@@ -82,11 +85,16 @@ class mesaController {
         $clienteArticulo = new ClienteArticulo();
         $alertas = [];
         // if(!is_numeric($_GET['id'])) return;
+        if(!empty($_GET['id'])) {
 
-        // $cliente = Cliente::find($_GET['id']);
-      
+            $cliente = Cliente::find($_GET['id']);
+        }else {
+            $cliente = "";
+        }
+        
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+            
+
             $clienteArticulo->sincronizar($_POST);
           
             $alertas = $clienteArticulo->validar();
@@ -103,6 +111,7 @@ class mesaController {
            
             'nombre' => $_SESSION['nombre'],
             "alertas" => $alertas,
+            "cliente" => $cliente,
  
             'id' => $_SESSION['id']
         ]);
