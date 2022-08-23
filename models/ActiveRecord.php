@@ -178,7 +178,6 @@ class ActiveRecord {
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 "; 
 
-        var_dump($query);
    
         
         // Actualizar BD
@@ -193,6 +192,7 @@ class ActiveRecord {
     public function eliminar() {
         $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
+        var_dump($query);
         return $resultado;
     }
 

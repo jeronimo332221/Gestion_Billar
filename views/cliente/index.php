@@ -1,10 +1,10 @@
-<h1 class="nombre-pagina">Gestor De Clientes</h1>
 
 
 <?php 
     include_once __DIR__ . '/../templates/barra.php';
-
-?>
+    
+    ?>
+    <h1 class="nombre-pagina">Gestor De Clientes</h1>
 
 <section>
     
@@ -15,7 +15,7 @@
             <p><?php echo $cliente->nombre; ?></p> 
             <p><?php echo $cliente->apodo; ?></p> 
             <p><?php echo $cliente->telefono; ?></p> 
-            <p><?php echo $cliente->mesaId; ?></p> 
+            <a href="/mesa/ver?id=<?php echo $cliente->mesaId; ?>"><?php echo $cliente->mesaId; ?></a> 
             <p>$ <?php echo $cliente->cumulado; ?></p> 
             <div class="acciones">
                 <a class="boton" href="/cliente/actualizar?id=<?php echo $cliente->id; ?>">!</a>

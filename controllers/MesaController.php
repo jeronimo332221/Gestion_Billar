@@ -14,11 +14,19 @@ class mesaController {
         session_start();
         $mesas = Mesa::all();
         $clientes = Cliente::all();
+        foreach ($clientes as $cliente) {
+
+            echo "<br>";
+            var_dump($cliente);
+            echo "<br>";
+            $cumulado = $cliente->cumulado;
+        }
         
         $router->render('mesa/index', [
             "mesas" => $mesas,
             "clientes" => $clientes,
             'nombre' => $_SESSION['nombre'],
+            "cumulado" => $cumulado ?? 0,
             'id' => $_SESSION['id']
         ]);
     }
@@ -40,9 +48,13 @@ class mesaController {
         $alertas = [];
         
 
+        $cumTotal = 0;
         foreach($clientes as $cliente){
-            if($mesa->id == $cliente->mesaId) {      
+            if($mesa->id == $cliente->mesaId) {   
+                $cumTotal += $cliente->cumulado;  
+
                 $clienteV[] = $cliente;        
+             
                 
                 foreach($clienteArticulo as $clienteA) {
                     if($clienteA->clienteId == $cliente->id){
@@ -59,6 +71,7 @@ class mesaController {
             'nombre' => $_SESSION['nombre'],
             'mesa' => $mesa,
             'clienteV' => $clienteV,
+            'cumTotal' => $cumTotal,
 
             'articulos' => $articulos,
             'artV' => $artV,
@@ -73,7 +86,21 @@ class mesaController {
         $clienteArticulo = ClienteArticulo::find($id);
         $clienteArticulo->eliminar();
 
-        header('Location: /mesa ');
+
+        header('Location: /mesa');
+        
+        
+        
+    }
+    public static function cortar(){
+        session_start();
+
+        $id = $_GET['id'];
+        $mesa = Mesa::find($id);
+        
+
+
+        header('Location: /mesa');
         
         
         
@@ -83,27 +110,48 @@ class mesaController {
 
         session_start();
         $clienteArticulo = new ClienteArticulo();
+    
+        $id = $_GET['id'];
         $alertas = [];
         // if(!is_numeric($_GET['id'])) return;
-        if(!empty($_GET['id'])) {
-
-            $cliente = Cliente::find($_GET['id']);
+        if(!empty($id)) {
+        
+            $cliente = Cliente::find($id);
+            
+          
+            $cliente->guardar();
+            
+        
         }else {
             $cliente = "";
         }
         
+        $cumulado = $cliente->cumulado;
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+            $cumulado += $cliente->cumulado;
+            $cliente->cumulado = $cumulado ;
 
+           
+           
+            
+           
+            
+            
+            
             $clienteArticulo->sincronizar($_POST);
-          
+            $cliente->sincronizar($_POST);
+         
+            
+            $cliente->guardar();
             $alertas = $clienteArticulo->validar();
 
             if(empty($alertas)) {
                 $clienteArticulo->guardar(); 
                 
+                
             }
         }
+
 
 
         
@@ -112,6 +160,7 @@ class mesaController {
             'nombre' => $_SESSION['nombre'],
             "alertas" => $alertas,
             "cliente" => $cliente,
+            "cumulado" => $cumulado ?? 0,
  
             'id' => $_SESSION['id']
         ]);

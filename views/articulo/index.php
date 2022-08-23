@@ -1,10 +1,11 @@
-<h1 class="nombre-pagina">Gestor De Articulos</h1>
 
 
 <?php 
     include_once __DIR__ . '/../templates/barra.php';
 
 ?>
+<h1 class="nombre-pagina">Gestor De Articulos</h1>
+
 
 <section>
    <div class="cliente-contenedor">

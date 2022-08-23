@@ -1,9 +1,9 @@
-<h1 class="nombre-pagina">Nuevo Cliente</h1>
 
 <?php
     include_once __DIR__ . '/../templates/barra.php';
     include_once __DIR__ . '/../templates/alertas.php';
-?>
+    ?>
+<h1 class="nombre-pagina">Nuevo Cliente</h1>
 
 <form action="/cliente/crear" method="POST" class="formulario">
 

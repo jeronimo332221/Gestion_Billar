@@ -1,9 +1,11 @@
-<h1 class="nombre-pagina">Informacion Mesa</h1>
+
 
 <?php
     include_once __DIR__ . '/../templates/barra.php';
     include_once __DIR__ . '/../templates/alertas.php';
+    $esPrimer = true
 ?>
+<h1 class="nombre-pagina">Informacion Mesa</h1>
 
 <form method="POST" class="formulario">
     
@@ -32,7 +34,7 @@
                                         <h4 class="articulo"><?php echo $articulo->id ?></h4>
                                         <h4 class="articulo"><?php echo $articulo->nombre ?></h4>
                                         <label class="articulo"><?php echo $articulo->precio ?></label>
-                                        <a href="clienteArticulo/eliminar?id=<?php echo $articulo->id ?>" class="boton-eliminar"></a>
+                                        <a href="/clienteArticulo/eliminar?id=<?php echo $aV->id ?>" class="boton-eliminar"></a>
                                         
 
                                     </div>
@@ -48,14 +50,16 @@
                      ?>
                    
                     
-  
-                    <a class="campo-articulo" href="/clienteArticulo/crear?id=<?php echo $clV->id; ?>">+</a>
+                    <form action="">
+
+                        <a class="campo-articulo" href="/clienteArticulo/crear?id=<?php echo $clV->id; ?>">+</a>
+                    </form>
                 </div>
 
                 
                    
                 <div class="cumulado"><p>Cumulado</p> 
-                <h4><?php echo $cumulado;  ?></h4></div>
+                <h4><?php if($esPrimer){$total = $cumulado; $esPrimer = false;}else{$total += $cumulado; };echo $cumulado;   ?></h4></div>
 
             </section>     
             
@@ -69,8 +73,15 @@
 
 </form> 
 
-<?php 
-    $script = "
+<div class="barra">
+    <nav class="nav">
+        <p>Acumulado Total <?php echo $total;   ?></p>
+        <p>Fecha De Cierre: 40000</p>
+        <p>Juego :  ...... </p>
+        <a href="#">Cerrar Mesa</a>
+        
+    </div>
+    </nav>
+</div>
 
-    ";
-?>
+
