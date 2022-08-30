@@ -5,9 +5,10 @@
             
          <a class="boton btn-barra " href="/cliente/crear" >Crear Cliente</a>
         <a class="boton btn-barra" href="/cliente">Clientes</a>
-        <a class="boton btn-barra" href="/mesa">Ver Mesas</a>
-        <a class="boton btn-barra" href="/articulo">Articulos</a>
         <a class="boton btn-barra" href="/articulo/crear">Crear Articulos</a>
+        <a class="boton btn-barra" href="/articulo">Articulos</a>
+        <a class="boton btn-barra" href="/mesa">Mesas</a>
+        <a class="boton btn-barra" href="/mesa/historial">Historial</a>
         <a class="boton btn-barra" href="/logout">Log-Out</a>
         
     </div>

@@ -31,15 +31,34 @@ class Articulo extends ActiveRecord {
         $this->precio = $args['precio'] ?? '';
         $this->fechaRepo = $args['fechaRepo'] ?? 0;
         $this->fechaRepoCocina = $args['fechaRepoCocina'] ?? '';
-        $this->stockCocina = $args['stockCocina'] ?? '';
-        $this->existencia = $args['existencia'] ?? '';
-        $this->acumVend = $args['acumVend'] ?? '';
+        $this->stockCocina = $args['stockCocina'] ?? 0;
+        $this->existencia = $args['existencia'] ?? 0;
+        $this->acumVend = $args['acumVend'] ?? 0;
         $this->fraccion = $args['fraccion'] ?? '';
         $this->cantRep = $args['cantRep'] ?? '';
     }
 
     public function mostrarAlerta($para) {
         self::$alertas['exito'][] = $para;
+    }
+    public function contadores() {
+        $this->stockCocina -= intval($this->fraccion); 
+        $this->existencia -=  intval($this->fraccion); 
+        $this->acumVend = intval($this->acumVend) + 1; 
+        
+        
+    }
+    public function validarValores() {
+        if($this->existencia <= $this->stockMin) {
+            self::$alertas['error'][] = "falta stock articulo n°  $this->id  --  $this->nombre" ;;
+        
+        } else {
+            
+        }   
+        return self::$alertas;
+
+        
+        
     }
 
     // public function validar() {

@@ -10,6 +10,12 @@ class ArticuloController {
 
         session_start();
         $articulos = Articulo::all();
+        $alertas = [];
+        
+        foreach($articulos as $art) {
+            $art->validarValores();
+        }
+        $alertas = Articulo::getAlertas();
 
         
 
@@ -17,6 +23,7 @@ class ArticuloController {
         $router->render('articulo/index', [
         
             "articulos" => $articulos,
+            "alertas" => $alertas,
             'nombre' => $_SESSION['nombre'],
             'id' => $_SESSION['id']
         ]);

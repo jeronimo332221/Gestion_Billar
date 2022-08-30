@@ -152,6 +152,8 @@ class ActiveRecord {
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
 
+
+
      
         // Resultado de la consulta
         $resultado = self::$db->query($query);
@@ -177,6 +179,7 @@ class ActiveRecord {
         $query .=  join(', ', $valores );
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 "; 
+
 
    
         

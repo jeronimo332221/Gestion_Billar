@@ -35,8 +35,9 @@ $router->post('/articulo/eliminar', [ArticuloController::class, "eliminar"]);
 $router->get('/mesa', [mesaController::class, "index"]);
 $router->get('/mesa/ver', [mesaController::class, "ver"]);  
 $router->post('/mesa/eliminar', [mesaController::class, "eliminar"]);
+$router->get('/mesa/cortar', [mesaController::class, "cortar"]);
 $router->post('/mesa/cortar', [mesaController::class, "cortar"]);
-$router->post('/mesa/cortar', [mesaController::class, "cortar"]);
+$router->get('/mesa/historial', [mesaController::class, "indexHistorial"]);
 
 $router->get('/clienteArticulo/crear', [mesaController::class, "clienteArticuloCrear"]);
 $router->post('/clienteArticulo/crear', [mesaController::class, "clienteArticuloCrear"]);

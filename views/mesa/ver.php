@@ -29,12 +29,17 @@
                                 if($aV->articuloId == $articulo->id) {
                                  
                                     $cumulado += $articulo->precio;
+                                    $clV->cumulado = $cumulado; 
+                                    $clV->guardar();
+                                
                                    ?>
                                     <div class="articulo-list">
                                         <h4 class="articulo"><?php echo $articulo->id ?></h4>
                                         <h4 class="articulo"><?php echo $articulo->nombre ?></h4>
                                         <label class="articulo"><?php echo $articulo->precio ?></label>
-                                        <a href="/clienteArticulo/eliminar?id=<?php echo $aV->id ?>" class="boton-eliminar"></a>
+                                        <a href="/clienteArticulo/eliminar?id=<?php echo $aV->id;
+                                    $clV->cumulado = $cumulado; 
+                                    $clV->guardar();?>" class="boton-eliminar"></a>
                                         
 
                                     </div>
@@ -59,7 +64,7 @@
                 
                    
                 <div class="cumulado"><p>Cumulado</p> 
-                <h4><?php if($esPrimer){$total = $cumulado; $esPrimer = false;}else{$total += $cumulado; };echo $cumulado;   ?></h4></div>
+                <h4><?php if($esPrimer){$total = $cumulado; $esPrimer = false;}else{$total += $cumulado; };echo $cumulado;  ?></h4></div>
 
             </section>     
             
@@ -73,15 +78,6 @@
 
 </form> 
 
-<div class="barra">
-    <nav class="nav">
-        <p>Acumulado Total <?php echo $total;   ?></p>
-        <p>Fecha De Cierre: 40000</p>
-        <p>Juego :  ...... </p>
-        <a href="#">Cerrar Mesa</a>
-        
-    </div>
-    </nav>
-</div>
+<a href="/mesa/cortar?total=<?php echo $total ; ?>" class="boton">CORTAR MESA</a>
 
 
